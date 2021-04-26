@@ -1,15 +1,14 @@
 {
   "name": "amazon-bot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "scripts": {
     "bump": "npm run bump:patch",
     "bump:patch": "npm version patch",
     "bump:minor": "npm version minor",
     "bump:major": "npm version major",
-    "dev": "nodemon index2.js"
+    "dev": "nodemon index.js"
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",

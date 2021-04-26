@@ -1,52 +1,120 @@
-const puppeteer = require('puppeteer')
-const fs = require('fs')
+/* eslint-disable no-constant-condition */
+/* eslint-disable no-continue */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-console */
 
-//Get local data 
-let rawData = fs.readFileSync('data.json')
-let data = JSON.parse(rawData)
+(require('dotenv')).config();
 
-console.log(data);
+const mongoose = require('mongoose');
+const puppeteer = require('puppeteer');
+const readline = require('readline');
 
-//Amazon request
-const pageLink = "https://www.amazon.fr/Sony-WH-1000XM3-Casque-Bluetooth-r%C3%A9duction/dp/B07GDR2LYK?ref_=Oct_s9_apbd_otopr_hd_bw_bkDYQ3&pf_rd_r=YT8QYKNT5J98X5XPH5EM&pf_rd_p=94fc4d5f-c67e-5e77-915a-068d1cdec7a2&pf_rd_s=merchandised-search-10&pf_rd_t=BROWSE&pf_rd_i=682942031";
+const { Schema, model: Model } = mongoose;
+
+console.log = ((oldConsoleLog) => (
+  (data, ...args) => {
+    if (process.env.DEBUG) oldConsoleLog(data, ...args);
+  }
+))(console.log);
+
+mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
+
+const ProductSchema = new Schema({
+  url: String,
+  name: String,
+  asin: String,
+  prices: [{
+    timestamp: Number,
+    value: String,
+  }],
+});
+
+const Product = new Model('Product', ProductSchema);
+
+const userInput = (question) => new Promise((resolve) => {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  rl.question(question, (answer) => {
+    rl.close();
+    resolve(answer);
+  });
+});
 
 (async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto(pageLink);
-    const productTitle = (await page.$eval('#productTitle', el => el.textContent)).replace(/\n/g, '')
-    console.log(productTitle)
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-    const priceBlock = await page.$eval('#priceblock_ourprice', el => el.textContent)
-    console.log(priceBlock);
+  process.on('SIGINT', async () => {
     await browser.close();
+    process.exit();
+  });
 
+  while (true) {
+    console.log('/======');
+    const url = await userInput('| URL: ');
 
-    //Create Product object
-    const product = {
-      name : productTitle,
-      prices : [
-        {
-          timestamp : new Date (Date.now()).toISOString(),
-          price : priceBlock
-        }
-      ],
-      link : pageLink
-    }
+    let pageUrl;
 
-    //Check if new product or update data
-    let hadToPush = true
-    data.map(function(el, i) {
-      if(el.name == product.name) {
-        data[i].prices.push(product.prices[0]);
-        hadToPush = false
+    try {
+      pageUrl = new URL(url);
+
+      if (!pageUrl.host.match(/(.*\.)?amazon\.\w/)) {
+        console.log('Incorrect url (expecting an amazon one)');
+        console.log('\\======\n');
+        continue;
       }
-    })
-
-    if (hadToPush) {
-      data.push(product)  
+    } catch (e) {
+      console.log('Incorrect url (expecting an amazon one)');
+      console.log('\\======\n');
+      continue;
     }
-    console.log(data);
-    const dataString = JSON.stringify(data)
-    fs.writeFileSync('data.json', dataString)
-  })();
+
+    console.log('\\======\n');
+    await page.goto(url);
+
+    const asin = (await page.$eval('[name=ASIN]', (el) => el.value));
+    const name = (await page.$eval('#productTitle', (el) => el.textContent)).replace(/\n/g, '');
+    const price = (await page.$eval('#priceblock_ourprice', (el) => el.textContent));
+
+    console.log('/======');
+    console.log(`| ASIN: ${asin}`);
+    console.log(`| NAME: ${name}`);
+    console.log(`| PRICE: ${price}`);
+    console.log('|======');
+
+    let product = await Product.findOne({ asin });
+
+    if (!product) {
+      product = new Product({
+        asin,
+        name,
+        url,
+        prices: [{
+          timestamp: Date.now(),
+          value: price,
+        }],
+      });
+
+      await product.save();
+
+      console.log('| Product added.');
+      console.log('\\======\n');
+    } else {
+      product.prices.push({
+        timestamp: Date.now(),
+        value: price,
+      });
+
+      await product.save();
+
+      console.log('| Price pushed to product.');
+      console.log('\\======\n');
+    }
+  }
+})();
