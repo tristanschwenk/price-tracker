@@ -1,0 +1,183 @@
+@import "./normalize.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    background: #F7F6F4;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.container {
+    display: grid;
+    grid-template-columns: .8fr 3.1fr 1.1fr;
+    gap: 3em;
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+
+    .sidebar {
+        border-radius: 15px;
+        background-image: url("../assets/images/background.jpg");
+        background-image: linear-gradient(rgba(255, 114, 87, .8), rgba(255, 89, 89, .8)), url("../assets/images/background.jpg");
+        background-size: cover;
+        background-position-x: -50px;
+        color: white;
+
+        h1 {
+            text-align: center;
+        }
+
+        .nav-content {
+            width: 90%;
+            margin-top: 7em;
+            display: grid;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 1.5em;
+
+            button {
+                background: none;
+                border: none;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .3em;
+                padding: .5em;
+                border-radius: 0px 10px 10px 0px;
+                transition: background ease-in .2s;
+                cursor: pointer;
+
+                svg {
+                    stroke: white;
+                }
+
+                &:hover {
+                    background: white;
+                    color: rgba(255, 89, 89, 1);
+
+                    svg {
+                        stroke: rgba(255, 89, 89, 1);
+                    }
+
+                }
+            }
+        }
+    }
+
+    .content {
+        display: grid;
+        grid-template-areas:
+            "PROFILE PROFILE PROFILE"
+            "PRODUCT DEAL ECO"
+            "PRODUCT DEAL ECO"
+            "GRAPH GRAPH GRAPH"
+            "GRAPH GRAPH GRAPH"
+            "GRAPH GRAPH GRAPH";
+        gap: 3em;
+
+        .content-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1em;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            max-height: 25vh;
+
+            .card-title {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .card-value {
+                align-self: flex-end;
+                justify-self: end;
+                font-size: 3em;
+                font-weight: 600;
+                color: #F65439;
+            }
+        }
+
+        .profile {
+            grid-area: PROFILE;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-content: center;
+            height: fit-content;
+            padding: 1em 0;
+
+            .profile-name {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: .5em;
+
+                #profile-pic {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 10px;
+                }
+            }
+
+            .search-input {
+                display: flex;
+                flex-direction: row;
+                gap: .5em;
+                align-items: center;
+                background: #F7F6F4;
+                border-radius: 15px;
+                padding: .5em 1em;
+
+                input {
+                    background: none;
+                    border: none;
+                    font-size: .8em;
+                    width: 13vw;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+        .product {
+            grid-area: PRODUCT;
+        }
+
+        .deal {
+            grid-area: DEAL;
+        }
+
+        .eco {
+            grid-area: ECO;
+        }
+
+        .graph {
+            grid-area: GRAPH;
+        }
+    }
+
+    .left-sidebar {
+        border-radius: 15px;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 3em;
+
+        .left-side-card {
+            background: white;
+            border-radius: 15px;
+        }
+    }
+}
