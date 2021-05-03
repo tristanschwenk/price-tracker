@@ -423,7 +423,7 @@ body {
 }
 
 .container .sidebar .nav-content button:hover {
-  background: white;
+  background: rgba(255, 255, 255, 0.8);
   color: #ff5959;
 }
 
@@ -461,7 +461,7 @@ body {
       align-self: flex-end;
   -ms-grid-column-align: end;
       justify-self: end;
-  font-size: 3em;
+  font-size: 2.5em;
   font-weight: 600;
   color: #F65439;
 }
@@ -530,6 +530,7 @@ body {
   border: none;
   font-size: .8em;
   width: 13vw;
+  color: #F65439;
 }
 
 .container .content .profile .search-input input:focus {
@@ -563,6 +564,7 @@ body {
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-area: GRAPH;
+  min-height: 40vh;
 }
 
 .container .left-sidebar {

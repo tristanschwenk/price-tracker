@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.0.5 - 2020-05-03
+### Added
+- Vue script for front
+- Chart Library for price tracking
+
+### Changed
+- Edit Main page:
+  - Added style to whole main section
+  - Added style to chart 
+  - Change some general style on the page
+
+### Removed
+- remove `app.js` file (see **ADDED**)
+
 ## v0.0.4 - 2020-04-29
 ### Added
 - SCSS style sheet compiled in CSS
