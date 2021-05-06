@@ -100,7 +100,7 @@
                         </svg>
                         <h3>Products</h3>
                     </div>
-                    <span class="card-value">{{productNbr}}</span>
+                    <span class="card-value">{{products.length}}</span>
                 </div>
                 <div class="deal content-card">
                     <div class="card-title">
@@ -140,7 +140,7 @@
 
                         <h3>Meilleurs Deals</h3>
                     </div>
-                    <span class="card-value">{{bestDealValue.value}}€</span>
+                    <span class="card-value">{{bestDeal.priceDiff}}€</span>
                 </div>
                 <div class="eco content-card">
                     <div class="card-title">
@@ -197,7 +197,6 @@
     <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="./app.js"></script>
     <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
-    <script src="./chart.js"></script>
 </body>
 
 </html>

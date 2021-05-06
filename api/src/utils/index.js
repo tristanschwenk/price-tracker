@@ -58,7 +58,6 @@ exports.buildAPI = (apiObject, shared={}) => {
 	}
 	
 	return async (req, res, next) => {
-
 		let body = req.body;
 
 		if (typeof body !== 'object') {

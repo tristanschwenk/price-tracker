@@ -1,22 +1,18 @@
 var app = new Vue({
   el: '#app',
   data: {
+    apiUrl: 'http://localhost:3002',
     userName: "Zao",
-    productNbr: 0,
-    bestDealValue: {
-      value: 0,
-      id: 0
-    },
     totalEco: 0,
     sendURL: "",
-    products: {},
-    priceFluc: [],
+    products: [],
     chartData: []
   },
-  created() {
-    this.getProduct()
+  async beforeMount() {
+    await this.getProduct();
   },
   mounted() {
+    window.vueInstance = this;
     am4core.ready(function () {
 
       // Themes begin
@@ -113,6 +109,25 @@ var app = new Vue({
       chart.cursor = new am4charts.XYCursor();
     });
   },
+  computed: {
+    bestDeal() {
+      const sorted = [...this.products]
+        .sort((a,b) => a.priceDiff-b.priceDiff)
+        .reverse();
+
+      return sorted[0];
+    },
+    // getMostData: function () {
+    //   for (let index = 0; index < this.products[this.bestDeal.id].prices.length; index++) {
+    //     const element = this.products[this.bestDeal.id].prices[index];
+    //     this.chartData.push({
+    //       "data": new Date(element.timestamp),
+    //       "price": element.value
+    //     })
+    //   }
+    //   console.log(this.chartData);
+    // },
+  },
   methods: {
     sendForm: function () {
       var myHeaders = new Headers();
@@ -142,55 +157,25 @@ var app = new Vue({
 
     },
     getProduct: async function () {
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-
-      var raw = JSON.stringify({
+      this.products = await this.callApi({
         "method": "product.all",
       });
-
-      var requestOptions = {
+    },
+    async callApi(queries = {}) {
+      const req = await fetch(this.apiUrl, {
         method: 'POST',
-        headers: myHeaders,
-        body: raw,
+        headers: new Headers({
+          "Content-Type": "application/json"
+        }),
+        body: JSON.stringify(queries),
         redirect: 'follow'
-      };
+      });
 
-      this.products = await (await fetch("http://localhost:3002/", requestOptions)).json()
-      this.productNbr = this.products["product.all"].length;
-      console.log("All data ->>>>", this.products);
-      this.getPriceFluc()
-    },
-    getPriceFluc: function () {
-      for (const index in this.products["product.all"]) {
-        const element = this.products["product.all"][index]
-        this.priceFluc.push(element.prices[0].value.slice(0, -2).replace(',', '.') - element.prices[element.prices.length - 1].value.slice(0, -2).replace(',', '.'))
-      }
-      this.getBestDeal()
-    },
-    getBestDeal: function () {
-      for (let index = 0; index < this.priceFluc.length; index++) {
-        const element = this.priceFluc[index];
-        this.totalEco += element
-        if (element > this.bestDealValue.value) {
-          this.bestDealValue = {
-            value: element,
-            id: index
-          }
-        }
-      }
-      this.getMostData()
+      const data = await req.json();
 
-    },
-    getMostData: function () {
-      for (let index = 0; index < this.products["product.all"][this.bestDealValue.id].prices.length; index++) {
-        const element = this.products["product.all"][this.bestDealValue.id].prices[index];
-        this.chartData.push({
-          "data": new Date(element.timestamp),
-          "price": element.value
-        })
-      }
-      console.log(this.chartData);
+      if(!Array.isArray(queries)) return data[queries.method];
+
+      return data;
     }
   }
 })
