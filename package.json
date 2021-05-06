@@ -1,28 +1,27 @@
 {
-  "name": "amazon-bot",
-  "version": "0.0.3",
-  "main": "index.js",
+  "name": "price-tracker",
+  "version": "0.0.9",
+  "main": "api/index.js",
   "scripts": {
-    "bump": "npm run bump:patch",
-    "bump:patch": "npm version patch",
-    "bump:minor": "npm version minor",
-    "bump:major": "npm version major",
-    "dev": "nodemon index.js"
+    "serve:front": "cd public && npx serve",
+    "serve:back": "nodemon api/index.js --ignore api/cache/"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.12.5",
-    "puppeteer": "^8.0.0"
+    "colors": "1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "8.2.0",
+    "express": "4.17.1",
+    "fs-extra": "10.0.0",
+    "mongoose": "5.11.11",
+    "puppeteer": "9.1.1"
   },
   "devDependencies": {
     "eslint": "7.25.0",
     "eslint-config-airbnb-base": "14.2.1",
-    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-import": "2.2.0",
     "nodemon": "2.0.7"
   },
   "repository": {

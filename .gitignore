@@ -1,6 +1,4 @@
 .DS_Store
-node_modules/
 .env
-public/css/normalize.css.map
-public/css/style.css.map
-public/css/normalize.css
+node_modules/
+public/css/*.css.map
