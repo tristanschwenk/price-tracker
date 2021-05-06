@@ -9,6 +9,9 @@ const mongoose = require('mongoose');
 const puppeteer = require('puppeteer');
 const readline = require('readline');
 
+
+//Get new data
+
 const { Schema, model: Model } = mongoose;
 
 console.log = ((oldConsoleLog) => (

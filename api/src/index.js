@@ -1,6 +1,7 @@
 (async () => {
   const express = require('express');
   const mongoose = require('mongoose');
+  const cors = require('cors')
   const AmazonService = require('./services/amazon');
   const models = require('./models');
 
@@ -15,6 +16,8 @@
   const port = process.env.PORT;
 
   app.use(express.json());
+  app.use(cors());
+
 
   const {
     logger,
