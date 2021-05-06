@@ -20,7 +20,8 @@ APIError.notAuthorized =  new APIError('Not authorized');
 APIError.missingField =   new APIError('Missing field in body');
 APIError.notFound =       new APIError('Not found');
 APIError.auth = {
-  accountNotFound:        new APIError('Account not found')
+  accountNotFound:        new APIError('Account not found'),
+  emailAlreadyUsed:       new APIError('Email already used')
 }
 
 module.exports = APIError

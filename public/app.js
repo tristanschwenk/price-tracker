@@ -10,6 +10,7 @@ var app = new Vue({
   },
   async beforeMount() {
     await this.getProduct();
+    document.getElementById('loader').remove();
   },
   mounted() {
     window.vueInstance = this;

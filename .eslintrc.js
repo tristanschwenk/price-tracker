@@ -10,11 +10,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
   },
-  rules: {},
-  overrides: [{
-    files: ['api/src/methods/**/index.js'],
-    rules: {
-      'global-require': false,
-    },
-  }],
+  rules: {
+    'global-require': 0,
+  },
 };
