@@ -7,6 +7,7 @@ const ProductSchema = new Schema({
   url: String,
   name: String,
   asin: String,
+  image: String,
   prices: [{
     timestamp: Number,
     value: String,
@@ -20,7 +21,6 @@ ProductSchema.virtual('priceDiff').get(function (){
   const firstPrice = parseFloat(this.prices[0].value.replace(',', '.'));
   const lastPrice = parseFloat(this.prices[this.prices.length - 1].value.replace(',', '.'));
 
-  
   return firstPrice-lastPrice;
 })
 

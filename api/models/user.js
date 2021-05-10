@@ -7,6 +7,7 @@ const UserSchema = new Schema({
   avatar: String,
   lastLoginAt: Date,
   refreshToken: String,
+  products: [{ type: Schema.Types.ObjectId, ref: 'Product' }]
 });
 
 module.exports = new model('User', UserSchema);

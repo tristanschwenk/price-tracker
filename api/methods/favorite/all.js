@@ -6,8 +6,11 @@ module.exports = new Method({
   rules: [
     isAuthentificated,
   ],
-  execute: async ({models}) => {
-   return await models.Product.find({});
+  execute: async ({models, auth, data, logger}) => {
+    const favs = await models.Favorite.find({
+      user: auth.payload.userId
+    });
+    return favs.map(({product})=>product);
   }
 });
 

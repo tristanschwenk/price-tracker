@@ -1,8 +1,9 @@
-const 
-  isAdmin = (opts) => {
-    return opts.data.mySuperSecret == 'mynameisgab';
-  };
+const { auth } = require("./ApiError")
+
+const isAuthentificated = ({auth}) => {
+    return auth.isTokenValid;
+  }
 
 module.exports = {
-  isAdmin
+  isAuthentificated
 }

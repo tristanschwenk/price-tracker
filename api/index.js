@@ -11,6 +11,7 @@
   mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
   });
 
   const app = express();
@@ -31,10 +32,14 @@
    */
   const product = require('./methods/product');
   const auth = require('./methods/auth');
+  const user = require('./methods/user');
+  const favorite = require('./methods/favorite');
 
   app.use(buildAPI({
     product,
     auth,
+    user,
+    favorite
   }, {
     services: {
       amazon: AmazonService,
