@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/login.css">
+    <title>Price Tracker — Register</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Price Tracker</h1>
+        <h2>Register</h2>
+
+        <div class="user-info">
+            <form action="">
+                <div class="user-info-input">
+                    <div class="search-input">
+                        <input type="text" placeholder="Entre ton nom..." name="url" id="url" @keyup.enter="sendForm()"
+                            v-model="sendURL" autocomplete="name">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M4 22a8 8 0 1 1 16 0h-2a6 6 0 1 0-12 0H4zm8-9c-3.315 0-6-2.685-6-6s2.685-6 6-6 6 2.685 6 6-2.685 6-6 6zm0-2c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"
+                                fill="rgba(246,84,57,1)" /></svg>
+    
+                    </div>
+                </div>
+    
+                <div class="user-info-input">
+                    <div class="search-input">
+                        <input type="email" placeholder="Entre ton mail..." name="url" id="url" @keyup.enter="sendForm()"
+                            v-model="sendURL" autocomplete="email">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm17 4.238l-7.928 7.1L4 7.216V19h16V7.238zM4.511 5l7.55 6.662L19.502 5H4.511z"
+                                fill="rgba(246,84,57,1)" /></svg>
+    
+                    </div>
+                </div>
+    
+                <div class="user-info-input">
+                    <div class="search-input">
+                        <input type="password" placeholder="Entre ton mot de passe..." name="url" id="url"
+                            @keyup.enter="sendForm()" v-model="sendURL" autocomplete="new-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M7 10h13a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 0 1 13.262-3.131l-1.789.894A5 5 0 0 0 7 9v1zm-2 2v8h14v-8H5zm5 3h4v2h-4v-2z"
+                                fill="rgba(246,84,57,1)" /></svg>
+                    </div>
+                </div>
+    
+                <div class="user-info-input">
+                    <div class="search-input">
+                        <input type="password" placeholder="Confirme ton mot de passe..." name="url" id="url"
+                            @keyup.enter="sendForm()" v-model="sendURL" autocomplete="new-password">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                            <path fill="none" d="M0 0h24v24H0z" />
+                            <path
+                                d="M7 10h13a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h1V9a7 7 0 0 1 13.262-3.131l-1.789.894A5 5 0 0 0 7 9v1zm-2 2v8h14v-8H5zm5 3h4v2h-4v-2z"
+                                fill="rgba(246,84,57,1)" /></svg>
+                    </div>
+                </div>
+    
+                <button type="submit">S'inscrire</button>
+            </form>
+
+        </div>
+    </div>
+</body>
+
+</html>
