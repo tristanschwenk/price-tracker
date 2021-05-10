@@ -18,6 +18,13 @@ body {
 
 }
 
+a {
+    border: none;
+    outline: none;
+    text-decoration: none;
+    text-align: center;
+}
+
 .container {
     display: grid;
     grid-template-columns: .8fr 3.1fr 1.1fr;
@@ -28,11 +35,10 @@ body {
 
     .sidebar {
         border-radius: 15px;
-        background-image: url("../assets/images/background.jpg");
-        background-image: linear-gradient(rgba(255, 114, 87, .8), rgba(255, 89, 89, .8)), url("../assets/images/background.jpg");
+        background-image: url("../assets/images/background.png");
+        background-image: linear-gradient(rgba(255, 114, 87, .8), rgba(255, 89, 89, .8)), url("../assets/images/background.png");
         background-size: cover;
         background-repeat: no-repeat;
-        background-position-x: -50px;
         color: white;
 
         h1 {
@@ -58,6 +64,7 @@ body {
                 border-radius: 0px 10px 10px 0px;
                 transition: background ease-in .2s;
                 cursor: pointer;
+                width: 100%;
 
                 svg {
                     stroke: white;

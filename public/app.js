@@ -13,6 +13,9 @@ var app = new Vue({
     document.getElementById('loader').remove();
   },
   mounted() {
+    console.log(this.products)
+    this.addChartData()
+
     window.vueInstance = this;
     am4core.ready(function () {
 
@@ -26,49 +29,49 @@ var app = new Vue({
 
       // Add data
       chart.data = [{
-        "date": "2012-03-01",
+        "date": "2021-04-21",
         "price": 20,
       }, {
-        "date": "2012-03-02",
+        "date": "2021-04-22",
         "price": 75,
       }, {
-        "date": "2012-03-03",
+        "date": "2021-04-23",
         "price": 15,
       }, {
-        "date": "2012-03-04",
+        "date": "2021-04-24",
         "price": 75
       }, {
-        "date": "2012-03-05",
+        "date": "2021-04-25",
         "price": 158
       }, {
-        "date": "2012-03-06",
+        "date": "2021-04-26",
         "price": 57
       }, {
-        "date": "2012-03-07",
+        "date": "2021-04-27",
         "price": 107
       }, {
-        "date": "2012-03-08",
+        "date": "2021-04-28",
         "price": 89
       }, {
-        "date": "2012-03-09",
+        "date": "2021-04-29",
         "price": 75
       }, {
-        "date": "2012-03-10",
+        "date": "2021-04-30",
         "price": 132
       }, {
-        "date": "2012-03-11",
+        "date": "2021-05-01",
         "price": 380
       }, {
-        "date": "2012-03-12",
+        "date": "2021-05-02",
         "price": 56
       }, {
-        "date": "2012-03-13",
+        "date": "2021-05-03",
         "price": 169
       }, {
-        "date": "2012-03-14",
+        "date": "2021-05-04",
         "price": 24
       }, {
-        "date": "2012-03-15",
+        "date": "2021-05-05",
         "price": 147
       }];
 
@@ -109,11 +112,13 @@ var app = new Vue({
 
       chart.cursor = new am4charts.XYCursor();
     });
+
+
   },
   computed: {
     bestDeal() {
       const sorted = [...this.products]
-        .sort((a,b) => a.priceDiff-b.priceDiff)
+        .sort((a, b) => a.priceDiff - b.priceDiff)
         .reverse();
 
       return sorted[0];
@@ -161,6 +166,9 @@ var app = new Vue({
       this.products = await this.callApi({
         "method": "product.all",
       });
+
+      console.log(this.products);
+      this.convertDate()
     },
     async callApi(queries = {}) {
       const req = await fetch(this.apiUrl, {
@@ -174,9 +182,27 @@ var app = new Vue({
 
       const data = await req.json();
 
-      if(!Array.isArray(queries)) return data[queries.method];
+      if (!Array.isArray(queries)) return data[queries.method];
 
       return data;
+    },
+
+    convertDate() {
+      this.products.map((product) => {
+        return product.prices.map(price => {
+          return price.timestamp = new Date(price.timestamp).toLocaleDateString();
+        })
+      })
+    },
+    addChartData() {
+      this.products.map((product) => {
+        product.prices.map(price => {
+          this.chartData.append({
+            "date": price.timestamp,
+            "value": price.value
+          })
+        })
+      })
     }
   }
 })

@@ -1,0 +1,112 @@
+.container {
+    grid-template-columns: .8fr 4.3fr;
+}
+
+.product-content {
+    height: 90vh;
+    background: white;
+    border-radius: 15px;
+    padding: 1em 3em;
+
+    .product-grid {
+        display: grid;
+    }
+
+    table {
+        width: 100%;
+        border: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
+
+        th,
+        td {
+          border: 0;
+        }
+
+        thead {
+
+          tr {
+
+            th {
+              text-align: left;
+              font-weight: normal;
+              padding-bottom: 1em;
+              text-transform: capitalize;
+
+            }
+          }
+
+        }
+
+        tbody {
+          tr {
+            padding: 0;
+            overflow: hidden;
+            white-space: nowrap;
+
+            &.selectable {
+              td div {
+                cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
+              }
+            }
+
+            &.selectable:hover,
+            &.selectable:focus {
+              td div {
+                background-color: lighten(#F7F6F4, 10);
+              }
+            }
+
+            &:not(:last-child) {
+              td {
+                div {
+                  margin-bottom: 10px;
+                }
+              }
+            }
+
+            td {
+
+              div {
+                background-color: #F7F6F4;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+              }
+
+              &:first-child {
+                div {
+                  border-top-left-radius: 7px;
+                  border-bottom-left-radius: 7px;
+                }
+              }
+
+              &:nth-child(2) {
+                  div {
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    max-width: 50ch;
+                  }
+              }
+
+              &:last-child {
+                div {
+                  border-top-right-radius: 7px;
+                  border-bottom-right-radius: 7px;
+                }
+              }
+
+              padding: 0;
+
+              img {
+                height: 100%;
+                border-radius: 7px;
+              }
+            }
+          }
+        }
+      }
+}
