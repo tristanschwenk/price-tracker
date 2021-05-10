@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/login.css">
     <title>Price Tracker — Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <h1>Price Tracker</h1>
         <h2>Login</h2>
 
@@ -44,7 +46,7 @@
                     </div>
                 </div>
     
-                <button type="submit">Se connecter</button>
+                <button type="button" @click="login">Se connecter</button>
             </form>
         </div>
     </div>
