@@ -1,34 +1,39 @@
 const APIError = require('../../utils/ApiError');
 const Method = require('../../utils/Method');
-const rules = require('../../utils/rules');
+const {isAuthentificated} = require('../../utils/rules');
 
 module.exports = new Method({
   schema: {
     url: String
   },
+  rules: [
+    isAuthentificated,
+  ],
   execute: async ({
     data,
     services,
     logger,
     models,
+    auth
   }) => {
     const {
       url
     } = data;
 
-    const {asin, name, price, timestamp} = await services.amazon.scanProduct(url);
+    const {asin, name, price, timestamp, image} = await services.amazon.scanProduct(url);
 
 
-    const product = await models.Product.findOne({
+    let product = await models.Product.findOne({
       asin
     });
 
     if (!product) {
 
-      return await models.Product.create({
+      product = await models.Product.create({
         asin,
         name,
         url,
+        image,
         prices: [{
           timestamp,
           value: price
@@ -37,13 +42,26 @@ module.exports = new Method({
 
     }else{
 
-      product.prices.push({
-        timestamp: Date.now(),
-        value: price,
+      product = await models.Product.findByIdAndUpdate(product.id, {
+        name, 
+        image,
+        $push: {
+          prices: {
+            timestamp,
+            value: price,
+          }
+        }
       });
-
-      return await product.save();
+      
     }
 
+    // link the product to the current user
+    await models.User.findByIdAndUpdate(auth.payload.userId, {
+      $addToSet: {
+        products: product._id
+      }
+    });
+
+    return product;
   }
 });

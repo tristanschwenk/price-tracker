@@ -9,6 +9,7 @@ const AmazonSelector = {
   ASIN: '[name=ASIN]',
   NAME: '#productTitle',
   PRICE: '#priceblock_ourprice',
+  IMAGE: '#landingImage',
 }
 
 class AmazonService extends Service {
@@ -45,10 +46,11 @@ class AmazonService extends Service {
     const asin = (await page.$eval(AmazonSelector.ASIN, (el) => el.value));
     const name = (await page.$eval(AmazonSelector.NAME, (el) => el.textContent)).replace(/\n/g, '');
     const price = (await page.$eval(AmazonSelector.PRICE, (el) => el.textContent));
+    const image = (await page.$eval(AmazonSelector.IMAGE, (el) => el.src));
     const timestamp = Date.now();
 
     return {
-      asin, name, price, timestamp
+      asin, name, price, timestamp, image
     };
   }
 

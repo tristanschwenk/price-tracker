@@ -23,6 +23,9 @@ module.exports = new Method({
       password: hashedPassword,
     });
 
-    return user;
+    return {
+      ...user.toObject(),
+      password: undefined
+    };
   },
 });

@@ -1,6 +1,8 @@
 const colors = require('colors');
 const APIError = require('./ApiError');
 const Method = require('./Method');
+const AmazonService = require('../services/amazon');
+const AuthService = require('../services/auth');
 
 exports.flattenObject = (ob) => {
 	var toReturn = {};
@@ -24,7 +26,8 @@ exports.flattenObject = (ob) => {
 };
 
 exports.logger = (query, ...messages) => {
-	console.log(`${new Date().toLocaleTimeString('fr-FR').green} [${(query?.method || "System").toUpperCase().yellow}]`, ...messages);
+	const name = (typeof query === 'string') ? query : query?.method;
+	console.log(`${new Date().toLocaleTimeString('fr-FR').green} [${(name || "System").toUpperCase().yellow}]`, ...messages);
 }
 
 /**
@@ -58,6 +61,9 @@ exports.buildAPI = (apiObject, shared={}) => {
 	}
 	
 	return async (req, res, next) => {
+
+		const auth = AuthService.authMiddleware(req, res);
+
 		let body = req.body;
 
 		if (typeof body !== 'object') {
@@ -76,6 +82,7 @@ exports.buildAPI = (apiObject, shared={}) => {
 		}
 
 		for (const query of body) {
+			if(query.method.startsWith('#')) continue;
 			const result = await _executeQuery(query);
 			results[query.method] = result;
 			hasErrors = (result instanceof APIError) ? true : hasErrors;
@@ -99,6 +106,7 @@ exports.buildAPI = (apiObject, shared={}) => {
 				query,
 				data: query.data || query.body || {},
 				req,
+				auth,
 				logger: (...messages) => exports.logger(query, ...messages),
 			}
 

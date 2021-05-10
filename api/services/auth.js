@@ -65,6 +65,39 @@ class AuthService extends Service {
   verifyRefreshJWT(token) {
     return verify(token, JWT_REFRESH_TOKEN_SECRET);
   }
+
+  authMiddleware(req, res, next) {
+    let auth = {
+			token: undefined,
+			payload: {},
+			isTokenValid: false,
+		};
+    
+		const bearerHeader = req.headers['authorization'];
+		if (bearerHeader) {
+			const bearer = bearerHeader.split(' ');
+			if(bearer[0] == 'Bearer') {
+				auth.token = bearer[1];
+
+				try {
+					const payload = this.verifyJWT(auth.token);
+					if(payload && typeof payload.userId === 'string'){
+						auth = {
+							...auth,
+							payload,
+							isTokenValid: true,
+						}
+					}
+				} catch (error) {
+					if(!['TokenExpiredError', 'NotBeforeError', 'JsonWebTokenError'].includes(error.constructor.name)) {
+						this.logger('JWT Middleware', error);
+					}
+				}
+			}
+		}
+
+    return auth;
+  }
 }
 
 module.exports = new AuthService();
