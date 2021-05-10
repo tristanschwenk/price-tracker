@@ -1,3 +1,7 @@
+import ApiService from './api.service.js';
+
+const apiService = new ApiService();
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -163,30 +167,13 @@ var app = new Vue({
 
     },
     getProduct: async function () {
-      this.products = await this.callApi({
+      this.products = await apiService.execute({
         "method": "product.all",
       });
 
       console.log(this.products);
       this.convertDate()
     },
-    async callApi(queries = {}) {
-      const req = await fetch(this.apiUrl, {
-        method: 'POST',
-        headers: new Headers({
-          "Content-Type": "application/json"
-        }),
-        body: JSON.stringify(queries),
-        redirect: 'follow'
-      });
-
-      const data = await req.json();
-
-      if (!Array.isArray(queries)) return data[queries.method];
-
-      return data;
-    },
-
     convertDate() {
       this.products.map((product) => {
         return product.prices.map(price => {
