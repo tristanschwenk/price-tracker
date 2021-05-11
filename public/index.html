@@ -114,13 +114,13 @@
                     <div class="profile-name">
                         <img src="./assets/images/profile.jpeg" alt="profile-pic" id="profile-pic">
                         <div class="profile-name-text">
-                            <h3>Hello, {{ userName }}</h3>
+                            <h3>Hello, {{ user.name }}</h3>
                             <p>Have a nice Coffee</p>
                         </div>
                     </div>
                     <div class="search-input">
                         <input type="text" placeholder="Recherche par nom ou url..." name="url" id="url"
-                            @keyup.enter="sendForm()" v-model="sendURL">
+                            @keyup.enter="sendForm()" v-model="searchTerm">
                         <button type="submit"><svg width="20" height="20" viewBox="0 0 35 35" fill="none"
                                 @click="sendForm()" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -233,7 +233,7 @@
 
                         <h3>Economies</h3>
                     </div>
-                    <span class="card-value">{{totalEco}}€</span>
+                    <span class="card-value">{{totalSaving}}€</span>
                 </div>
                 <div class="chartdiv graph content-card"></div>
             </div>

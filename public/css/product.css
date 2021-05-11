@@ -1,6 +1,5 @@
 .container {
-  -ms-grid-columns: .8fr 4.3fr;
-      grid-template-columns: .8fr 4.3fr;
+  grid-template-columns: 0.8fr 4.3fr;
 }
 
 .product-content {
@@ -9,86 +8,65 @@
   border-radius: 15px;
   padding: 1em 3em;
 }
-
 .product-content .product-grid {
-  display: -ms-grid;
   display: grid;
 }
-
 .product-content table {
   width: 100%;
   border: 0;
   border-spacing: 0;
   border-collapse: collapse;
 }
-
 .product-content table th,
 .product-content table td {
   border: 0;
 }
-
 .product-content table thead tr th {
   text-align: left;
   font-weight: normal;
   padding-bottom: 1em;
   text-transform: capitalize;
 }
-
 .product-content table tbody tr {
   padding: 0;
   overflow: hidden;
   white-space: nowrap;
 }
-
 .product-content table tbody tr.selectable td div {
   cursor: pointer;
-  -webkit-transition: background-color 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
 }
-
 .product-content table tbody tr.selectable:hover td div, .product-content table tbody tr.selectable:focus td div {
   background-color: white;
 }
-
 .product-content table tbody tr:not(:last-child) td div {
   margin-bottom: 10px;
 }
-
 .product-content table tbody tr td {
   padding: 0;
 }
-
 .product-content table tbody tr td div {
   background-color: #F7F6F4;
   height: 45px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   overflow: hidden;
 }
-
 .product-content table tbody tr td:first-child div {
   border-top-left-radius: 7px;
   border-bottom-left-radius: 7px;
 }
-
 .product-content table tbody tr td:nth-child(2) div {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 50ch;
 }
-
 .product-content table tbody tr td:last-child div {
   border-top-right-radius: 7px;
   border-bottom-right-radius: 7px;
 }
-
 .product-content table tbody tr td img {
   height: 100%;
   border-radius: 7px;
-}
-/*# sourceMappingURL=product.css.map */
+}/*# sourceMappingURL=product.css.map */

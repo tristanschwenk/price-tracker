@@ -45,7 +45,7 @@ class AmazonService extends Service {
 
     const asin = (await page.$eval(AmazonSelector.ASIN, (el) => el.value));
     const name = (await page.$eval(AmazonSelector.NAME, (el) => el.textContent)).replace(/\n/g, '');
-    const price = (await page.$eval(AmazonSelector.PRICE, (el) => el.textContent));
+    const price = parseFloat((await page.$eval(AmazonSelector.PRICE, (el) => el.textContent)).replace(',', '.'));
     const image = (await page.$eval(AmazonSelector.IMAGE, (el) => el.src));
     const timestamp = Date.now();
 

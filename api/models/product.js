@@ -10,7 +10,7 @@ const ProductSchema = new Schema({
   image: String,
   prices: [{
     timestamp: Number,
-    value: String,
+    value: Number,
   }],
 }, {
   toObject: { virtuals: true },
@@ -18,8 +18,8 @@ const ProductSchema = new Schema({
 });
 
 ProductSchema.virtual('priceDiff').get(function (){
-  const firstPrice = parseFloat(this.prices[0].value.replace(',', '.'));
-  const lastPrice = parseFloat(this.prices[this.prices.length - 1].value.replace(',', '.'));
+  const firstPrice = this.prices[0];
+  const lastPrice = this.prices[this.prices.length - 1];
 
   return firstPrice-lastPrice;
 })
