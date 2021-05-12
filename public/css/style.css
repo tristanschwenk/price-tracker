@@ -376,36 +376,47 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   color: white;
+  position: relative;
 }
 .container .sidebar h1 {
   text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.container .sidebar .sidebar-content {
+  display: grid;
+  align-items: center;
+  height: 100%;
 }
 .container .sidebar .nav-content {
-  width: 90%;
-  margin-top: 7em;
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 1.5em;
+  margin-right: 10%;
 }
 .container .sidebar .nav-content button {
   background: none;
   border: none;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 0.3em;
   padding: 0.5em;
+  margin-bottom: 0.5em;
   border-radius: 0px 10px 10px 0px;
   transition: background ease-in 0.2s;
   cursor: pointer;
   width: 100%;
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  overflow: hidden;
+  align-items: center;
+  padding-left: 1em;
 }
 .container .sidebar .nav-content button svg {
   stroke: white;
+  width: 24px;
+  height: 24px;
 }
 .container .sidebar .nav-content button:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: white;
   color: #ff5959;
 }
 .container .sidebar .nav-content button:hover svg {

@@ -134,6 +134,9 @@ export default class ApiService {
   isAuthentificated() {
     const session = this.getSession();
     if(session && session.token) {
+      if(session.exp * 1000 <= Date.now()) {
+        refreshSession();
+      }
       return true;
     }
 

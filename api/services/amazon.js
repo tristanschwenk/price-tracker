@@ -39,6 +39,7 @@ class AmazonService extends Service {
   async scanProduct(url) {
     if(!this.checkUrl(url)) return AmazonServiceError.invalidURL;
 
+    this.logger("Importing...", {url});
     const page = await this.browser.newPage();
 
     await page.goto(url);
@@ -48,6 +49,8 @@ class AmazonService extends Service {
     const price = parseFloat((await page.$eval(AmazonSelector.PRICE, (el) => el.textContent)).replace(',', '.'));
     const image = (await page.$eval(AmazonSelector.IMAGE, (el) => el.src));
     const timestamp = Date.now();
+
+    this.logger("Import ended", {asin});
 
     return {
       asin, name, price, timestamp, image

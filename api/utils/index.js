@@ -82,6 +82,7 @@ exports.buildAPI = (apiObject, shared={}) => {
 		}
 
 		for (const query of body) {
+			if(!query.method) continue;
 			if(query.method.startsWith('#')) continue;
 			const result = await _executeQuery(query);
 			results[query.method] = result;

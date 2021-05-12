@@ -39,38 +39,50 @@ a {
         background-size: cover;
         background-repeat: no-repeat;
         color: white;
+        position: relative;
 
         h1 {
             text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .sidebar-content {
+            display: grid;
+            align-items: center;
+            // grid-auto-rows: auto 1fr;
+            height: 100%;
         }
 
         .nav-content {
-            width: 90%;
-            margin-top: 7em;
-            display: grid;
-            grid-template-rows: 1fr 1fr 1fr;
-            gap: 1.5em;
-
+            margin-right: 10%;
             button {
                 background: none;
                 border: none;
                 color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
                 gap: .3em;
                 padding: .5em;
+                margin-bottom: .5em;
                 border-radius: 0px 10px 10px 0px;
                 transition: background ease-in .2s;
                 cursor: pointer;
                 width: 100%;
+                display: grid;
+                grid-template-columns: 24px 1fr;
+                overflow: hidden;
+                align-items: center;
+                padding-left: 1em;
 
                 svg {
                     stroke: white;
+                    width: 24px;
+                    height: 24px;
                 }
 
                 &:hover {
-                    background: rgba($color: #FFF, $alpha: .8);
+                    background: white;
                     color: rgba(255, 89, 89, 1);
 
                     svg {
