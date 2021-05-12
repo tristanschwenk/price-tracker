@@ -61,16 +61,20 @@ var app = new Vue({
       this.addChartData();
     },
     convertDate(timestamp) {
-      return new Date(timestamp)
+      return new Date(timestamp).toLocaleDateString('fr-FR')
     },
     addChartData() {
       if(!this.bestDeal.prices) return;
       this.bestDeal.prices.map(({timestamp, value}) => {
         this.chart.appendData({
-          date: this.convertDate(timestamp),
+          date: new Date(timestamp),
           value,
         });
       });
+    },
+    logout() {
+      apiService.clearSession()
+      window.location.pathname = "/login"
     }
   }
 })

@@ -15,18 +15,18 @@ body {
     justify-content: center;
     align-content: center;
     font-family: 'Poppins', sans-serif;
+    color: #2d3436;
 }
 
 a {
     border: none;
     outline: none;
     text-decoration: none;
-    text-align: center;
 }
 
 .container {
     display: grid;
-    grid-template-columns: .8fr 3.1fr 1.1fr;
+    grid-template-columns: .8fr 4.2fr ;
     gap: 3em;
     width: 90vw;
     height: 90vh;
@@ -54,26 +54,40 @@ a {
             align-items: center;
             // grid-auto-rows: auto 1fr;
             height: 100%;
+            position: relative;
         }
 
-        .nav-content {
+        .nav-content, .nav-footer {
+
+            &.nav-footer {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 90%;
+            }
+
+
             margin-right: 10%;
             button {
                 background: none;
                 border: none;
-                color: white;
-                gap: .3em;
-                padding: .5em;
-                margin-bottom: .5em;
                 border-radius: 0px 10px 10px 0px;
-                transition: background ease-in .2s;
-                cursor: pointer;
-                width: 100%;
+                color: white;
+
                 display: grid;
                 grid-template-columns: 24px 1fr;
-                overflow: hidden;
+                gap: 1em;
                 align-items: center;
+
+                padding: .5em;
                 padding-left: 1em;
+                margin-bottom: .5em;
+
+                width: 100%;
+                overflow: hidden;
+
+                cursor: pointer;
+                transition: background ease-in .2s;
 
                 svg {
                     stroke: white;
@@ -81,6 +95,9 @@ a {
                     height: 24px;
                 }
 
+                span {
+                    text-align: left;
+                }
                 &:hover {
                     background: white;
                     color: rgba(255, 89, 89, 1);
@@ -131,10 +148,10 @@ a {
             grid-area: PROFILE;
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: space-between;
             align-content: center;
             height: fit-content;
-            padding: 1em 0;
+            padding: 1em 1em;
 
             .profile-name {
                 display: flex;
@@ -150,8 +167,9 @@ a {
             }
 
             .search-input {
-                display: flex;
-                flex-direction: row;
+                width: 20vw;
+                display: grid;
+                grid-template-columns: 1fr auto;
                 gap: .5em;
                 align-items: center;
                 background: #F7F6F4;
@@ -168,8 +186,7 @@ a {
                     background: none;
                     border: none;
                     font-size: .8em;
-                    width: 13vw;
-                    color: #F65439;
+                    color: #2d3436;
 
                     &:focus {
                         outline: none;
