@@ -6,20 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/form.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>Price Tracker — Register</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" id="app">
         <h1>Price Tracker</h1>
         <h2>Register</h2>
 
-        <form action="">
+        <form @submit="register">
             <div class="user-info">
                 <div class="user-info-input">
                     <div class="search-input">
-                        <input type="text" placeholder="Entre ton nom..." name="url" id="url" @keyup.enter="sendForm()"
-                            v-model="sendURL" autocomplete="name">
+                        <input type="text" placeholder="Entre ton nom..." name="name" id="name" v-model= "name"
+                            autocomplete="name">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path
@@ -31,8 +32,8 @@
 
                 <div class="user-info-input">
                     <div class="search-input">
-                        <input type="email" placeholder="Entre ton mail..." name="url" id="url"
-                            @keyup.enter="sendForm()" v-model="sendURL" autocomplete="email">
+                        <input type="email" placeholder="Entre ton mail..." name="email" id="email"
+                            v-model="email" autocomplete="email">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path
@@ -44,8 +45,8 @@
 
                 <div class="user-info-input">
                     <div class="search-input">
-                        <input type="password" placeholder="Entre ton mot de passe..." name="url" id="url"
-                            @keyup.enter="sendForm()" v-model="sendURL" autocomplete="new-password">
+                        <input type="password" placeholder="Entre ton mot de passe..." name="password" id="password"
+                            v-model="password" autocomplete="new-password">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path
@@ -56,8 +57,8 @@
 
                 <div class="user-info-input">
                     <div class="search-input">
-                        <input type="password" placeholder="Confirme ton mot de passe..." name="url" id="url"
-                            @keyup.enter="sendForm()" v-model="sendURL" autocomplete="new-password">
+                        <input type="password" placeholder="Confirme ton mot de passe..." name="password-confim" id="password-confirm"
+                            autocomplete="new-password">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
                             <path fill="none" d="M0 0h24v24H0z" />
                             <path
@@ -71,6 +72,9 @@
             </div>
         </form>
     </div>
+
+    <script src="./scripts/register.js" type="module"></script>
+
 </body>
 
 </html>

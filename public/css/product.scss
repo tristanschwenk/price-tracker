@@ -2,6 +2,14 @@
   grid-template-columns: .8fr 4.3fr;
 }
 
+a {
+  color: black;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 55ch;
+}
+
 h1 {
   margin-bottom: 1.2em;
 }
@@ -120,5 +128,35 @@ h1 {
         }
       }
     }
+  }
+}
+
+.single-product {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 5rem;
+  height: 80%;
+  overflow: hidden;
+
+  img {
+    width: 25vw;
+    height: 25vw;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  h3 {
+    font-size: 1.6em;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  .chartdiv {
+    width: 30vw;
+    height: 300px;
   }
 }
