@@ -98,7 +98,7 @@ h1 {
 
             img {
               width: 45px;
-              object-fit: cover;
+              object-fit: contain;
               object-position: center;
             }
           }
@@ -145,10 +145,13 @@ h1 {
     height: 25vw;
     object-fit: contain;
     object-position: center;
+    border-radius: 15px;
+
   }
 
   h3 {
     font-size: 1.6em;
+    margin-bottom: .5em;
   }
 
   p {

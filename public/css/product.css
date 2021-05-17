@@ -90,8 +90,8 @@ h1 {
 
 .product-content table tbody tr td:first-child img {
   width: 45px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  -o-object-fit: contain;
+     object-fit: contain;
   -o-object-position: center;
      object-position: center;
 }
@@ -134,10 +134,12 @@ h1 {
      object-fit: contain;
   -o-object-position: center;
      object-position: center;
+  border-radius: 15px;
 }
 
 .single-product h3 {
   font-size: 1.6em;
+  margin-bottom: .5em;
 }
 
 .single-product p {

@@ -130,20 +130,23 @@
                 <h1>Mes Produits</h1>
 
                 <div class="single-product">
-                    <img src="https://cdn.dribbble.com/users/2368160/screenshots/15655995/media/f08e96fde3e3d2e4a996bff30394831d.jpg?compress=1&resize=1600x1200" alt="">
+                    <img :src="this.product.image" alt="">
 
                     <div class="single-product-stat">
-                        <h3>Title</h3>
-                        <p>Current Price : </p>
+                        <h3>{{this.product.name}}</h3>
+                        <p>Prix : {{this.product.prices[this.product.prices.length -1].value}}€ </p>
 
-                        <div class="chartdiv graph content-card"></div>
+                        <div class="chartdiv content-card"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
     <script src="./scripts/product.js" type="module"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
 </body>
 
 </html>
