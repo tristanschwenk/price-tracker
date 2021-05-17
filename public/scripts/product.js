@@ -8,13 +8,15 @@ var app = new Vue({
     el: '#app',
     data: {
         product: {},
+        searchTerm: {},
         id: "",
         chart: new ChartService(),
+        loading: true,
     },
     async beforeMount() {
         this.id = window.location.search.substr(4)
         await this.getProduct()
-
+        this.loading = false;
         document.getElementById('loader').remove();
     },
     mounted() {
@@ -27,6 +29,9 @@ var app = new Vue({
         user() {
             return apiService.getSession().user;
           },
+          lastPrice() {
+              return this.product.prices[this.product.prices.length -1];
+          }
     },
     methods: {
         getProduct: async function () {
