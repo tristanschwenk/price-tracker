@@ -18,8 +18,8 @@ const ProductSchema = new Schema({
 });
 
 ProductSchema.virtual('priceDiff').get(function (){
-  const firstPrice = this.prices[0];
-  const lastPrice = this.prices[this.prices.length - 1];
+  const firstPrice = this.prices[0].value;
+  const lastPrice = this.prices[this.prices.length - 1].value;
 
   return firstPrice-lastPrice;
 })
