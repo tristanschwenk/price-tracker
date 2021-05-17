@@ -1,20 +1,47 @@
 // load the things we need
-var express = require('express');
-var app = express();
+const express = require('express');
+const expressLayouts = require('express-ejs-layouts')
+const app = express();
 
 // set the view engine to ejs
+app.use(expressLayouts)
+app.set('layout', './layouts/default.ejs')
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// index page
-app.get('/', function(req, res) {
-    res.render('index');
+app.use('/assets', express.static('assets'));
+app.use('/css', express.static('css'));
+app.use('/scripts', express.static('scripts'));
+
+app.get('/:pageName?', function (req, res) {
+    const page = req.params.pageName || 'index';
+    const options = {
+        scripts: [],
+        modules: [
+            `./scripts/${page}.js`
+        ]
+    };
+
+    if (['index', 'products', 'product'].includes(page)) {
+        options.scripts.push(
+            'https://cdn.amcharts.com/lib/4/core.js',
+            'https://cdn.amcharts.com/lib/4/charts.js',
+            'https://cdn.amcharts.com/lib/4/themes/animated.js',
+        );
+
+        if(page!='product') {
+            options.modules = [
+                `./scripts/app.js`
+            ]
+        }
+    }
+
+    if (['login', 'register'].includes(page)) {
+        options.layout = './layouts/form.ejs';
+    }
+
+    res.render(page, options);
 });
 
-// about page
-app.get('/about', function(req, res) {
-    res.render('about');
-});
 
-app.listen(8080);
-console.log('8080 is the magic port');
+app.listen(8080, () => console.info(`App listening on port 8080`))

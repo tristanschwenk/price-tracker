@@ -1,0 +1,6 @@
+<% scripts.forEach(function(script) {%>
+  <script src="<%= script %>"></script>
+<%});%>
+<% modules.forEach(function(module) {%>
+  <script src="<%= module %>" type="module"></script>
+<%});%>

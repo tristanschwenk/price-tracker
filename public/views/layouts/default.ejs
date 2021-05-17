@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Price Tracker</title>
+    <style>
+        #loader {
+            width: 100vw;
+            height: 100vh;
+            background-color: #F7F6F4;
+            position: absolute;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            display: grid;
+            place-content: center;
+        }
+
+        .loader-spinner {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+        }
+
+        .loader-spinner:after {
+            content: " ";
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 6px solid #ff7257;
+            border-color: #ff7257 transparent #ff7257 transparent;
+            animation: spin 1.2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="loader">
+            <div class="loader-spinner"></div>
+        </div>
+        <div class="container">
+            <%- include('../partials/sidebar') %>
+            <div class="content">
+                <div class="profile content-card">
+                    <div class="profile-name">
+                        <img src="./assets/images/profile.jpeg" alt="profile-pic" id="profile-pic">
+                        <div class="profile-name-text">
+                            <h3>Hello, {{ user.name }}</h3>
+                            <p>Have a nice Coffee</p>
+                        </div>
+                    </div>
+                    <div class="search-input">
+                        <input type="text" placeholder="Recherche par nom ou url..." name="url" id="url"
+                            @keyup.enter="sendForm()" v-model="searchTerm">
+                        <button type="submit"><svg width="20" height="20" viewBox="0 0 35 35" fill="none"
+                                @click="sendForm()" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.0416 2.91669C23.2866 2.91669 29.1666 8.79669 29.1666 16.0417C29.1666 23.2867 23.2866 29.1667 16.0416 29.1667C8.79663 29.1667 2.91663 23.2867 2.91663 16.0417C2.91663 8.79669 8.79663 2.91669 16.0416 2.91669ZM16.0416 26.25C21.681 26.25 26.25 21.6811 26.25 16.0417C26.25 10.4009 21.681 5.83335 16.0416 5.83335C10.4008 5.83335 5.83329 10.4009 5.83329 16.0417C5.83329 21.6811 10.4008 26.25 16.0416 26.25ZM28.4156 26.3536L32.5412 30.4777L30.4777 32.5413L26.3535 28.4156L28.4156 26.3536Z"
+                                    fill="#F65439" />
+                            </svg></button>
+
+                    </div>
+                </div>
+                <%- body %>
+            </div>
+        </div>
+    </div>
+    <%- include('../partials/scripts') %>
+</body>
+
+</html>

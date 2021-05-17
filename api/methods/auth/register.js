@@ -8,8 +8,9 @@ module.exports = new Method({
     name: String,
   },
   execute: async ({ data, models, services }) => {
-    const { name, email, password } = data;
-
+    const { name, password } = data;
+    const email = data.email.toLowerCase();
+    
     const existingUser = await models.User.findOne({
       email,
     });

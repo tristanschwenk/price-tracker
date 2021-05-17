@@ -11,4 +11,3 @@ module.exports = new Method({
    return await models.Product.findById(id) || APIError.notFound;
   }
 });
-

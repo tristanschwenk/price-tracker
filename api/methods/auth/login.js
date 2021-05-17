@@ -7,7 +7,8 @@ module.exports = new Method({
     password: String,
   },
   execute: async ({ data, models, services }) => {
-    const { email, password } = data;
+    const password = data.password;
+    const email = data.email.toLowerCase();
 
     const user = await models.User.findOne({
       email,

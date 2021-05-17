@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="./css/product.css">
+
+
+<div class="product-content">
+    <h1>Mes Produits</h1>
+
+    <div class="product-grid">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>nom du produit</th>
+                    <th>date d'ajout</th>
+                    <th>prix d'origine</th>
+                    <th>prix actuel</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr v-for="product in this.products">
+                    <td>
+                        <div> <img :src="product.image" alt="cover" class="cover"></div>
+                    </td>
+                    <td>
+                        <div><a :href="'/product?id=' + product.id"><span class="truncate">{{product.name}}</span></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div>{{convertDate(product.prices[0].timestamp)}}</div>
+                    </td>
+                    <td>
+                        <div>{{product.prices[0].value}}€</div>
+                    </td>
+                    <td>
+                        <div>{{product.prices[product.prices.length-1].value}}€</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

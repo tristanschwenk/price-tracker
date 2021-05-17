@@ -23,6 +23,11 @@ var app = new Vue({
         this.chart.initChart();
 
     },
+    computed: {
+        user() {
+            return apiService.getSession().user;
+          },
+    },
     methods: {
         getProduct: async function () {
             this.product = await apiService.execute({
@@ -31,18 +36,6 @@ var app = new Vue({
                     "id": this.id
                 }
             });
-        },
-        login: async function (e) {
-            e.preventDefault();
-
-            const authLogin = await apiService.execute({
-                method: "auth.login",
-                body: {
-                    email: this.email,
-                    password: this.password
-                }
-            }, false);
-
         },
         logout() {
             apiService.clearSession()

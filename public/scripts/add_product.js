@@ -6,6 +6,7 @@ var app = new Vue({
   el: '#app',
   data: {
     productUrl: "",
+    searchTerm: "",
     product: [],
   },
   async beforeMount() {
@@ -13,6 +14,7 @@ var app = new Vue({
   },
   mounted() {
     window.vueInstance = this;
+    document.getElementById('loader').remove();
   },
   computed: {
     user() {
@@ -35,5 +37,9 @@ var app = new Vue({
       alert(product.error.message);
       console.log(product);
     },
+    logout() {
+      apiService.clearSession()
+      window.location.pathname = "/login"
+  },
   }
 })
