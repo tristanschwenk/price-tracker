@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="./css/product.css">
 
-<div class="product-content">
+<div class="product-content" v-if="!loading">
     <h1>Mes Produits</h1>
 
     <div class="single-product">
-        <img :src="this.product.image" alt="">
+        <img :src="product.image" alt="">
 
         <div class="single-product-stat">
-            <h3>{{this.product.name}}</h3>
-            <p>Prix : {{this.product.prices[this.product.prices.length -1].value}}€ </p>
+            <h3>{{product.name}}</h3>
+            <p>Prix : {{lastPrice.value}}€ </p>
 
             <div class="chartdiv content-card"></div>
         </div>
