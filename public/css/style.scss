@@ -26,7 +26,7 @@ a {
 
 .container {
     display: grid;
-    grid-template-columns: .8fr 4.2fr ;
+    grid-template-columns: .8fr 4.2fr;
     gap: 3em;
     width: 90vw;
     height: 90vh;
@@ -57,7 +57,8 @@ a {
             position: relative;
         }
 
-        .nav-content, .nav-footer {
+        .nav-content,
+        .nav-footer {
 
             &.nav-footer {
                 position: absolute;
@@ -68,6 +69,7 @@ a {
 
 
             margin-right: 10%;
+
             button {
                 background: none;
                 border: none;
@@ -98,6 +100,7 @@ a {
                 span {
                     text-align: left;
                 }
+
                 &:hover {
                     background: white;
                     color: rgba(255, 89, 89, 1);
@@ -111,15 +114,20 @@ a {
         }
     }
 
-    .content {
+    .grid-dashboard {
         display: grid;
-        grid-template-areas:
-            "PROFILE PROFILE PROFILE"
-            "PRODUCT DEAL ECO"
+        grid-template-areas: "PRODUCT DEAL ECO"
             "PRODUCT DEAL ECO"
             "GRAPH GRAPH GRAPH"
             "GRAPH GRAPH GRAPH"
             "GRAPH GRAPH GRAPH";
+        gap: 3em;
+
+    }
+
+    .content {
+        display: grid;
+        grid-template-rows: auto 1fr;
         gap: 3em;
 
         .content-card {
@@ -133,6 +141,10 @@ a {
             .card-title {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
+
+                h3 {
+                    text-align: end;
+                }
             }
 
             .card-value {
@@ -145,7 +157,6 @@ a {
         }
 
         .profile {
-            grid-area: PROFILE;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -224,4 +235,9 @@ a {
             border-radius: 15px;
         }
     }
+}
+
+form {
+    width: 60%;
+    margin: auto;
 }

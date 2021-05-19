@@ -162,3 +162,52 @@ h1 {
     height: 300px;
   }
 }
+
+.grid-product-setup {
+  grid-area: GRAPH;
+}
+
+.add-product-setup {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  form {
+    display: grid;
+    justify-items: center;
+    gap: 2em;
+    text-align: center;
+  }
+
+  button {
+    padding: .5em 3em;
+    background-color: #f75e43;
+    color: white;
+    border: none;
+    border-radius: 2em;
+    width: 17.5vw;
+    justify-self: center;
+  }
+
+  .user-info-input {
+    width: 35vw;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .5em;
+    align-items: center;
+    background: #F7F6F4;
+    border-radius: 15px;
+    padding: .5em 1em;
+    margin-bottom: 2em;
+
+    input {
+      background: none;
+      border: none;
+      outline: none;
+    }
+
+    .search-input {
+      display: grid;
+      grid-template-columns: 1fr auto;
+    }
+  }
+}

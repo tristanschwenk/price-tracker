@@ -118,4 +118,48 @@ h1 {
 .single-product .chartdiv {
   width: 30vw;
   height: 300px;
+}
+
+.grid-product-setup {
+  grid-area: GRAPH;
+}
+
+.add-product-setup {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.add-product-setup form {
+  display: grid;
+  justify-items: center;
+  gap: 2em;
+  text-align: center;
+}
+.add-product-setup button {
+  padding: 0.5em 3em;
+  background-color: #f75e43;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  width: 17.5vw;
+  justify-self: center;
+}
+.add-product-setup .user-info-input {
+  width: 35vw;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5em;
+  align-items: center;
+  background: #F7F6F4;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+  margin-bottom: 2em;
+}
+.add-product-setup .user-info-input input {
+  background: none;
+  border: none;
+  outline: none;
+}
+.add-product-setup .user-info-input .search-input {
+  display: grid;
+  grid-template-columns: 1fr auto;
 }/*# sourceMappingURL=product.css.map */

@@ -13,6 +13,10 @@ app.use('/assets', express.static('assets'));
 app.use('/css', express.static('css'));
 app.use('/scripts', express.static('scripts'));
 
+app.get('/favicon.ico', function(req, res) {
+    res.status(404).send()
+})
+
 app.get('/:pageName?', function (req, res) {
     const page = req.params.pageName || 'index';
     const options = {
