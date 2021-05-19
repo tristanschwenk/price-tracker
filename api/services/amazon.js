@@ -36,10 +36,10 @@ class AmazonService extends Service {
     return true;
   }
 
-  async scanProduct(url) {
+  async scanProduct(url, silent = false) {
     if(!this.checkUrl(url)) return AmazonServiceError.invalidURL;
 
-    this.logger("Importing...", {url});
+    if (!silent) this.logger("Importing...", {url});
     const page = await this.browser.newPage();
 
     await page.goto(url);
@@ -50,7 +50,7 @@ class AmazonService extends Service {
     const image = (await page.$eval(AmazonSelector.IMAGE, (el) => el.src));
     const timestamp = Date.now();
 
-    this.logger("Import ended", {asin});
+    if (!silent) this.logger("Import ended", {asin});
 
     return {
       asin, name, price, timestamp, image

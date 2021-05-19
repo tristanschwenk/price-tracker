@@ -4,6 +4,7 @@
   const cors = require('cors');
   const AmazonService = require('./services/amazon');
   const AuthService = require('./services/auth');
+  const CronService = require('./services/cron');
   const models = require('./models');
 
   require('dotenv').config();
@@ -26,6 +27,8 @@
   } = require('./utils');
 
   await AmazonService.init();
+  CronService.init();
+
 
   /*
    * Methods
@@ -44,6 +47,7 @@
     services: {
       amazon: AmazonService,
       auth: AuthService,
+      cron: CronService,
     },
     models,
   }));
